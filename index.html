@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="display">
+                
+                    <img src="" alt="" id="cover">
+                    <div class="title">
+                        <h1 id="title"></h1>
+                    </div>
+                
+               
+            </div>
+            <div class="buttons">
+                <div class="previous" id="privious">prives</div>
+                <div class="previous" id="play">play</div>
+                <div class="previous" id="next">next</div>
+            </div>
+        </div>
+    </main>
+    <script>
+        //seletor
+        var playbutton= document.getElementById('play');
+        var title= document.getElementById('title');
+        var cover= document.getElementById('cover');
+        var privious= document.getElementById('privious');
+        var next = document.getElementById('next');
+
+            
+
+        const data=[{
+            name:'mera Bhola he bhandari',
+            song:'music/bhola.mp3',
+            photo:'image/bhola.jfif'
+        },
+        {
+            name:'sanu yak pal chenuna aaya ',
+            song:'music/sanu.mp3',
+            photo:'image/sanu.jfif'
+        }];
+        var song= new Audio();
+        let play= false;
+        let currentMusic=0;
+        playbutton.addEventListener('click',function(){
+          playmusic();
+        });
+        privious.addEventListener('click',function (){
+            if(currentMusic ==0){
+                play=false;
+                currentMusic= data.length-1;
+                playmusic();
+            }else{
+                play=false;
+                currentMusic-=1;
+                playmusic();
+            }
+        });
+        next.addEventListener('click',function (){
+            if(currentMusic ==data.length-1){
+                play=false;
+                currentMusic=0;
+                playmusic();
+                console.log(currentMusic);
+            }else{
+                play=false;
+                currentMusic+=1;
+                playmusic();
+                console.log(currentMusic);
+            }
+        });
+        function playmusic(){
+            if(play==false){
+                playbutton.textContent='pause';
+                title.textContent=data[currentMusic].name;
+                cover.src=data[currentMusic].photo;
+                song.src=data[currentMusic].song;
+                song.play();
+                play=true;
+                
+            }
+            else{
+                playbutton.textContent='play';
+                song.pause();
+                play=false;
+            } 
+        }
+
+    </script>
+    
+</body>
+</html>
